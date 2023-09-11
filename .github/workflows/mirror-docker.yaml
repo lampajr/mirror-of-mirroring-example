@@ -21,7 +21,7 @@ jobs:
           export SRC_REPO=${{ github.server_url }}/${{ github.repository }}.git
           export DST_REPO=https://github.com/lampajr/mirror-of-mirroring-example.git
           export SRC_REPO_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          export DST_REPO_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          export DST_REPO_TOKEN=${{ secrets.MY_PAT }}
           export GIT_FORCE_PUSH=true
           export ONCE=true
           ls -la

@@ -10,9 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        repository: Enteee/git-sync-mirror
-        # v1.1.0
-        ref: b351901eea67dc81d072cd54f961a94a87d85969
+        with:
+          repository: Enteee/git-sync-mirror
+          # v1.1.0
+          ref: b351901eea67dc81d072cd54f961a94a87d85969
       - name: Run the mirroring
         shell: bash
         run: |
@@ -21,6 +22,8 @@ jobs:
           export DST_REPO=https://github.com/lampajr/mirror-of-mirroring-example.git
           export SRC_REPO_TOKEN=${{ secrets.GITHUB_TOKEN }}
           export DST_REPO_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          export GIT_FORCE_PUSH=true
           export ONCE=true
+          ls -la
           chmod +x ./bin/git-sync-mirror.sh
           ./bin/git-sync-mirror.sh

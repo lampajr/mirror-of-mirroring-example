@@ -13,5 +13,5 @@ jobs:
         with:
           target_repo_url:
             https://github.com/lampajr/mirror-of-mirroring-example.git
-          # ssh_private_key:
-          #   ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
+          ssh_private_key:
+            ${{ secrets.PERSONAL_PRIVATE_KEY }}

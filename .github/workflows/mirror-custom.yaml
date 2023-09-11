@@ -1,34 +1,34 @@
-name: Automatic Mirroring
+# name: Automatic Mirroring
 
-on: [push]
+# on: [push]
 
-env:
-  GIT_TRACE: "1"
-  GIT_CURL_VERBOSE: "1"
+# env:
+#   GIT_TRACE: "1"
+#   GIT_CURL_VERBOSE: "1"
 
-jobs:
-  mirror:
-    if: github.repository == 'lampajr/mirroring-example'
-    runs-on: ubuntu-latest
-    steps:
-      - name: mirror
-        run: |
-          ls -la
+# jobs:
+#   mirror:
+#     if: github.repository == 'lampajr/mirroring-example'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: mirror
+#         run: |
+#           ls -la
 
-          echo Setup SSH
-          mkdir -p ~/.ssh
-          echo "${{ secrets.PERSONAL_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+#           echo Setup SSH
+#           mkdir -p ~/.ssh
+#           echo "${{ secrets.PERSONAL_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+#           chmod 600 ~/.ssh/id_rsa
 
-          echo Setup GIT SSH Command
-          export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -l git"
+#           echo Setup GIT SSH Command
+#           export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -l git"
 
-          echo Cloning original bare repository
-          git clone --mirror git@github.com:lampajr/mirroring-example.git
+#           echo Cloning original bare repository
+#           git clone --mirror git@github.com:lampajr/mirroring-example.git
 
-          echo Add new push remote
-          cd mirroring-example.git
-          git remote set-url --push origin git@github.com:lampajr/mirror-of-mirroring-example.git
+#           echo Add new push remote
+#           cd mirroring-example.git
+#           git remote set-url --push origin git@github.com:lampajr/mirror-of-mirroring-example.git
 
-          echo Push
-          git push --mirror
+#           echo Push
+#           git push --mirror

@@ -1,22 +1,22 @@
-name: Automatic Mirroring
+# name: Automatic Mirroring
 
-on: [push]
+# on: [push]
 
-env:
-  GIT_TRACE: "1"
-  GIT_CURL_VERBOSE: "1"
+# env:
+#   GIT_TRACE: "1"
+#   GIT_CURL_VERBOSE: "1"
 
-jobs:
-  mirror:
-    if: github.repository == 'lampajr/mirroring-example'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
-        with:
-          target_repo_url:
-            git@github.com:lampajr/mirror-of-mirroring-example.git
-          ssh_private_key:
-            ${{ secrets.PERSONAL_PRIVATE_KEY }}
+# jobs:
+#   mirror:
+#     if: github.repository == 'lampajr/mirroring-example'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0
+#       - uses: pixta-dev/repository-mirroring-action@v1
+#         with:
+#           target_repo_url:
+#             git@github.com:lampajr/mirror-of-mirroring-example.git
+#           ssh_private_key:
+#             ${{ secrets.PERSONAL_PRIVATE_KEY }}

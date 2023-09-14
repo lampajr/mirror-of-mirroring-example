@@ -1,26 +1,26 @@
-name: Automatic Mirroring
+# name: Automatic Mirroring
 
-on: [push]
+# on: [push]
 
-jobs:
-  mirror:
-    # we can check github.repository_owner == 'apache'
-    if: github.repository == 'lampajr/mirroring-example'
-    name: Mirror the repository to kiegroup
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run the build process with Docker
-        uses: addnab/docker-run-action@v3
-        with:
-          image: enteee/git-sync-mirror:latest
-          options: >
-            --rm
-            --env DEBUG=true
-            --env SRC_REPO=${{ github.server_url }}/${{ github.repository }}.git
-            --env DST_REPO=https://github.com/lampajr/mirror-of-mirroring-example.git
-            --env SRC_REPO_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            --env DST_REPO_TOKEN=${{ secrets.MY_PAT }}
-            --env ONCE=true
-          run: |
-            ./bin/git-sync-mirror.sh
+# jobs:
+#   mirror:
+#     # we can check github.repository_owner == 'apache'
+#     if: github.repository == 'lampajr/mirroring-example'
+#     name: Mirror the repository to kiegroup
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Run the build process with Docker
+#         uses: addnab/docker-run-action@v3
+#         with:
+#           image: enteee/git-sync-mirror:latest
+#           options: >
+#             --rm
+#             --env DEBUG=true
+#             --env SRC_REPO=${{ github.server_url }}/${{ github.repository }}.git
+#             --env DST_REPO=https://github.com/lampajr/mirror-of-mirroring-example.git
+#             --env SRC_REPO_TOKEN=${{ secrets.GITHUB_TOKEN }}
+#             --env DST_REPO_TOKEN=${{ secrets.MY_PAT }}
+#             --env ONCE=true
+#           run: |
+#             ./bin/git-sync-mirror.sh
